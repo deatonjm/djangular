@@ -196,3 +196,7 @@ urlpatterns = [
   url(r'^api/v1/', include(api_router.urls)),
 ]
 ```
+
+
+
+---- right around here everything started screwing up. it turns out that git bash is not the holy grail of command lines on windows - in fact, it will straight up not execute your python manage.py runserver commands. you have to type '''winpty python.exe manage.py runserver''' to get it to work. literally wasted 10 hours on this. still not even sure if this will resolve everything. FML.
