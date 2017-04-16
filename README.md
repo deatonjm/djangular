@@ -23,21 +23,21 @@ c/
 $ . Scripts/activate
 ```
 4. Navigate into your project folder at /me/djangular/ and pip install the following:
-* Django `$ pip install django`
+* Django `$ pip install django==1.9`
 * ESLint `$ npm install -g eslint`
 * Webpack `$ npm install --save-dev webpack`
 * Django-environ `$ pip install django-environ`
 * Django REST Framework `$ pip install djangorestframework`
 
 5. Navigate back to your project folder at /me/djangular/ and create the following scaffolding (hit return when line ends):
-```
-$ mkdir -p backend/docs/ backend/requirements/ \
-           frontend/app/shared/ \
-           frontend/app/components/ \
-           frontend/config \
-           frontend/assets/img frontend/assets/css/ \
-           frontend/assets/js/ frontend/assets/libs/ \
-           frontend/dist/js/
+``` 
+$ mkdir -p backend/docs/ backend/requirements/ \  
+         frontend/app/shared/ \
+         frontend/app/components/ \
+         frontend/config \
+         frontend/assets/img/ frontend/assets/css/ \
+         frontend/assets/js/ frontend/assets/libs/ \
+         frontend/dist/js/
 ```
 ```
 your Tree should now look like:
@@ -68,21 +68,21 @@ $ django-admin.py startproject mysite .
 ```
 6. Still within /djangular/backend/, create a requirements.txt file in the requirements dir
 ```
-$ pip freeze > requirements/requirements.txt
+$ pip freeze > requirements/requirements.txt  
 ```
 7. Go into /djangular/backend/mysite/ and scaffold your API dirs (hit return when line ends):
 ```
-$ mkdir -p applications/api/v1/
-$ touch applications/__init__.py applications/api/__init__.py \
+$ mkdir -p applications/api/v1/  
+$ touch applications/__init__.py applications/api/__init__.py \  
         applications/api/v1/__init__.py applications/api/v1/routes.py \
-        applicaitons/api/v1/serializers.py applications/api/v1/viewsets.py
+        applications/api/v1/serializers.py applications/api/v1/viewsets.py
 ```
 8. Within /djangular/backend/mysite/ scaffold your settings dirs (hit enter when line ends):
 ```
-$ mkdir settings
-$ touch settings/__init__.py \
-        settings/base.py settings/dev.py settings/prod.py \
-        dev.env prod.env
+$ mkdir -p mysite/settings/  
+$ touch mysite/settings/__init__.py \  
+        mysite/settings/base.py mysite/settings/dev.py mysite/settings/prod.py \
+        mysite/dev.env mysite/prod.env
 ```
 9. Edit your /mysite/dev.env file to include the following:
 ```
@@ -95,52 +95,52 @@ SECRET_KEY=_some_secret_key
 ```
 import environ
 
-
-project_root = environ.Path(__file__) - 3
-env = environ.Env(DEBUG=(bool, False),)
+project_root = environ.Path(__file__) - 3  
+env = environ.Env(DEBUG=(bool, False),)  
 CURRENT_ENV = 'dev' # 'dev' is the default environment
 
-#read the .env file associated with the settings that are loaded
-env.read_env('./mysite/{}.env'.format(CURRENT_ENV))
+# read the .env file associated with the settings that're loaded
+env.read_env('./mysite/{}.env'.format(CURRENT_ENV)) 
 
-DATABASES = {
-  'default': env.db()
+DATABASES = {  
+    'default': env.db()
 }
 
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')  
+DEBUG = env('DEBUG')  
 
 # Application definition
 INSTALLED_APPS = [
-  # Django Packages
-  'rest_framework',
+
+    # Django Packages
+    'rest_framework',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'mysite.urls'  
 
-STATIC_URL = '/static/'
-STATICFILES_FINDERS = [
-  'django.contrib.staticfiles.finders.FileSystemFinder',
-  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+STATIC_URL = '/static/'  
+STATICFILES_FINDERS = [  
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-STATICFILES_DIRS = [
-  env('FRONTEND_ROOT')
+STATICFILES_DIRS = [  
+    env('FRONTEND_ROOT')
 ]
 
-TEMPLATES = [
-  {
-    'BACKEND': 'django.template.backends.django.DjangoTemplates',
-    'DIRS': '[env('FRONTEND_ROOT')],
-    'APP_DIRS': True,
-    'OPTIONS': {
-      'context_processors': [
-        'django.template.context_processors.debug',
-        'django.template.context_processors.request',
-        'django.contrib.auth.context_processors.auth',
-        'django.contrib.messages.context_processors.messages',
-      ],
+TEMPLATES = [  
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [env('FRONTEND_ROOT')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
     },
-  },
 ]
 ```
 11. In your /djangular/backend/mysite/settings.dev.py file, add the following:
