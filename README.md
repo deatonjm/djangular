@@ -86,10 +86,10 @@ $ touch settings/__init__.py \
 ```
 9. Edit your /mysite/dev.env file to include the following:
 ```
-DATABASE_URL=sqlite:///mysite.db
-DEBUG=on
-FRONTEND_END=path/to/mysite/frontend
-SECRET_KEY=_some_secret_key  # this will be the SECRET_KEY from your settings.py file
+DATABASE_URL=sqlite:///mysite.db  
+DEBUG=on  
+FRONTEND_ROOT=path/to/mysite/frontend/  
+SECRET_KEY=_some_secret_key 
 ```
 10. In your  djangular/backend/mysite/settings/base.py file, add the following:
 ```
