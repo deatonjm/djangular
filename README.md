@@ -151,9 +151,12 @@ from mysite.settings.base import *
 CURRENT_ENV = 'dev'
 ```
 11. Add a directory to your djangular/backend/applications dir called "games"
+```
+$ mkdir games
+```
 12. Back out to /djangular/backend and create the games application in th new games dir
 ```
-$ python manage.py startapp games mysite/applications/games
+$ winpty python.exe manage.py startapp games mysite/applications/games
 ```
 * note: if the above command doesn't work, you might need to delete all of the compiled python files (.pyc) from your project and try again.
 13. Add the 'applications.game' app to your `INSTALLED_APPS` list in /djangular/backend/mysite/settings/base.py
